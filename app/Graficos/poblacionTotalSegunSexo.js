@@ -130,9 +130,9 @@ export const PoblacionTotalSegunSexo = () => {
         });
 
         // Crear arrays de valores para cada grupo con la misma longitud
-        const hombresValores = tiempo.map((item) => parseInt(valorPorTiempo.Hombres[item]) || 0);
-        const mujeresValores = tiempo.map((item) => parseInt(valorPorTiempo.Mujeres[item]) || 0);
-        const ambosSexosValores = tiempo.map((item) => parseInt(valorPorTiempo['Ambos sexos'][item]) || 0);
+        const hombresValores = tiempo.map((item) => parseFloat(valorPorTiempo.Hombres[item]) || 0);
+        const mujeresValores = tiempo.map((item) => parseFloat(valorPorTiempo.Mujeres[item]) || 0);
+        const ambosSexosValores = tiempo.map((item) => parseFloat(valorPorTiempo['Ambos sexos'][item]) || 0);
 
         // Crear el objeto de datos para el gráfico
         const valoresGrafico = {

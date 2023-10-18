@@ -1,12 +1,17 @@
 'use client'
 import { useState } from 'react'
 import { PoblacionTotalSegunSexo } from './Graficos/poblacionTotalSegunSexo'
-import { Grid, Typography } from '@mui/material'
+import { Grid, InputLabel, MenuItem, Select, Typography } from '@mui/material'
 import { SelectMaterial } from './Select graficos'
+import { TasaAnualCrecimientoPorEdad } from './Graficos/tasaAnualCrecimientoPorEdad'
+import { Inversiones } from './Graficos/inversiones'
+
+const tipos = ['Bar', 'Line', 'Radar']
 
 export default function Home() {    
 
     const [ valueSelect, setValueSelect ] = useState('')
+    const [ tipo, setTipo ] = useState('Line') 
 
   return (
 
@@ -16,7 +21,23 @@ export default function Home() {
                 Graficos cepal
             </Typography>
         </Grid>
-        <Grid item container>
+        <Grid item container alignItems={'center'}>
+            <Grid item >
+                <Select
+                    // labelId="demo-simple-select-label"
+                    // id="demo-simple-select"
+                    value={tipo}
+                    label="Tipo"
+                    onChange={ (e) => setTipo( () => e.target.value )}
+                >
+                    {tipos.map(tipo => { 
+                        return (
+                            <MenuItem key={tipo} value={tipo}>{tipo}</MenuItem>
+                        )
+                    })}
+                    
+                </Select>
+            </Grid>
             <Grid item >
                 <SelectMaterial valueSelect={valueSelect} setValueSelect={setValueSelect}/>
             </Grid>
@@ -24,6 +45,12 @@ export default function Home() {
         <Grid item container justifyContent={'center'} >
             {( valueSelect == 'Población total segun sexo' ) && 
                 <PoblacionTotalSegunSexo/>
+            }
+            {(valueSelect == 'Tasa anual de crecimiento de la población total, por grupos de edad') && 
+                <TasaAnualCrecimientoPorEdad/>
+            }
+            {(valueSelect == 'Inversiones') && 
+                <Inversiones tipo={tipo}/>
             }
         </Grid>
     </Grid>
