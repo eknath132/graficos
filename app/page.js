@@ -5,6 +5,7 @@ import { Grid, InputLabel, MenuItem, Select, Typography } from '@mui/material'
 import { SelectMaterial } from './Select graficos'
 import { TasaAnualCrecimientoPorEdad } from './Graficos/tasaAnualCrecimientoPorEdad'
 import { Inversiones } from './Graficos/inversiones'
+import { Salud } from './Graficos/salud'
 
 const tipos = ['Bar', 'Line', 'Radar']
 
@@ -44,13 +45,16 @@ export default function Home() {
         </Grid>
         <Grid item container justifyContent={'center'} >
             {( valueSelect == 'Población total segun sexo' ) && 
-                <PoblacionTotalSegunSexo/>
+                <PoblacionTotalSegunSexo tipo={tipo}/>
             }
             {(valueSelect == 'Tasa anual de crecimiento de la población total, por grupos de edad') && 
-                <TasaAnualCrecimientoPorEdad/>
+                <TasaAnualCrecimientoPorEdad tipo={tipo}/>
             }
             {(valueSelect == 'Inversiones') && 
                 <Inversiones tipo={tipo}/>
+            }
+            {(valueSelect == 'Salud') && 
+                <Salud tipo={tipo}/>
             }
         </Grid>
     </Grid>

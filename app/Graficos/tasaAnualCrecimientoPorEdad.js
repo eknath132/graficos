@@ -14,6 +14,7 @@ import {
     Legend,
 } from 'chart.js';
 import { Line } from 'react-chartjs-2';
+import { TiposDeGraficos } from "./tiposGraficos";
 
 ChartJS.register(
     CategoryScale,
@@ -25,7 +26,7 @@ ChartJS.register(
     Legend
 );
 
-export const TasaAnualCrecimientoPorEdad = () => {
+export const TasaAnualCrecimientoPorEdad = ({tipo}) => {
     const [ data, setData ] = useState([])
     const [ dimensiones, setDimensiones ] = useState([])
     const [ tiempo, setTiempo ] = useState([])
@@ -115,8 +116,10 @@ export const TasaAnualCrecimientoPorEdad = () => {
         return valoresGrafico;
     }
     return (
-        <Grid item className={styles.graph}>
-            <Line options={options} data={datos()}/>
-        </Grid> 
+        <Grid item container justifyContent={'center'}>
+            <Grid item sx={{width:'80%', display:'flex', justifyContent:'center'}}>
+                <TiposDeGraficos options={options} datos={datos()} tipo={tipo} />
+            </Grid>
+        </Grid>
     )
 }
